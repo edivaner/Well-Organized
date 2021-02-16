@@ -1,0 +1,201 @@
+
+*{
+    box-sizing: content-box;
+}
+
+/********************
+                INDEX
+**********************/
+/*Menu index*/
+.navegacao{
+    background-color: white;
+    height: 100px;
+    margin: 20px 40px;
+    display: flex;
+    flex-direction: row;
+
+    
+}
+
+.logo{
+    height: 100%;
+    max-height: 50%;
+}
+
+.links{
+    height: 80px;
+    margin: 20px 160px;
+}
+
+.links a,
+.links a:hover{
+    font-family: "Montserrat Regular";
+    font-size: 24px;
+    font-weight: 500;
+    text-decoration: none;
+    color: black;
+}
+.divisor{
+    font-size: 20px;
+    margin: 10px;
+}
+
+/* formulario index*/
+.botaoAdicionar{
+    background-color: #fff;
+    font-family: "Roboto Medium";
+    font-size: 25px;
+    font-weight: 500;
+    color: #50b6cf;
+    width: 250px;
+    height: 40px;
+    border: none;
+
+    margin:2px 30px;
+}
+
+.esconder{
+    display: none;
+}
+
+input{
+    all: initial;
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.descricaoTexto{
+    font-family: "Montserrat Medium";
+    font-size: 18px;
+    font-weight: 500;
+    margin-left:40px;
+}
+.labelcor{
+    font-family: "Montserrat Medium";
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.descricaoInput{
+    all: initial;
+    border: 1px solid black;
+    width: 490px;
+    height: 40px;
+    border: 1px solid #50b6cf;
+    border-radius: 7px;
+}
+
+.buttonAdd{
+    font-family: "Roboto Medium";
+    border-radius: 10px;
+    background-color: #50b6cf;
+    color: white;
+    padding: 2px 15px;
+    width: 145px;
+    height: 40px;
+    margin-left: 10px;
+    border: none;
+}
+
+.checkzinho{
+    height: 20px;
+    width: 20px;
+}
+
+.checkzinho:checked{
+    box-shadow: 1px 1px 1px rgb(0, 0, 0, 0.25);
+}
+
+/*Cores do check*/
+.azul{background-color: #daf5fa;}
+.verde{background-color: #d1fecb;}
+.rosa{background-color: #f6d0f6;}
+.roxo{background-color: #dcd0f3;}
+.amarelo{background-color: #fcfccb;}
+.laranja{background-color: #fbd4b4;}
+.branco{background-color: #fff;}
+
+
+/*
+    Conteudo index
+*/
+
+.conteudo{
+    width: 1000px;
+    min-height: 500px;
+    padding: 20px 30px;
+}
+
+/***Cartão Concluido****/
+.cartaoConcluido{
+    display: inline-block;
+    vertical-align: top;
+    background-color: #d1fecb;
+    width: 200px;
+    height: 200px;
+    border: 0px solid black;
+    box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.25);
+    margin: 20px 10px;
+}
+
+.cabCartaoConcluido{
+    height: 25px;
+    width: 100%;
+    background-color: #b8ff99;
+    color: #2b5a07;
+    font-family: "Roboto Regular";
+    font-size: 15px;
+}
+
+.cabCartaoConcluido img{
+    margin: 5px;
+}
+
+    /*Serve tanto para concluido quanto para não concluido*/
+.textoDescricao{
+    font-family: "Open Sans SemiBold";
+    font-size: 20px;
+    padding: 10px;
+    height: 145px;
+    overflow-y: hidden;
+    /* border: 1px solid blue; */
+}
+
+.rodapeCartaoConcluido{
+    float: right;
+    /* border: 1px solid violet; */
+}
+
+/*Cartão não concluido*/
+
+.cartaoNaoConcluido{
+    display: inline-block;
+    vertical-align: top;
+    background-color: #d1fecb;
+    width: 200px;
+    height: 200px;
+    border: 0px solid black;
+    box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.25);
+    margin: 20px 10px;
+}
+
+.cabCartaoNaoConcluido{
+    height: 25px;
+    width: 100%;
+    background-color: #ffa4a3;
+    color: #e42c28;
+    font-family: "Roboto Regular";
+    font-size: 15px;
+}
+
+.cabCartaoNaoConcluido img{
+    margin: 5px;
+}
+
+.rodapeCartaoNaoConcluido{
+    float: right;
+    /* border: 1px solid violet; */
+}
+
