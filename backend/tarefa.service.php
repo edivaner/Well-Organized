@@ -22,7 +22,16 @@ class TarefaService{
 
 
     public function recuperar(){
-
+        $query = '
+                select 
+                    t.id, s.status, t.id_status, t.tarefa, t.cor_fundo, t.cor_tarefa 
+                from 
+                    tb_tarefas  as t 
+                    left join tb_status as s on (t.id_status = s.id)   
+        ';
+        $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function atualizar(){
@@ -31,6 +40,36 @@ class TarefaService{
 
     public function remover(){
 
+    }
+
+    public function afazer(){
+        $query = '
+                select 
+                    t.id, s.status, t.id_status, t.tarefa, t.cor_fundo, t.cor_tarefa 
+                from 
+                    tb_tarefas  as t 
+                    left join tb_status as s on (t.id_status = s.id)
+                where 
+                	t.id_status = 1  
+        ';
+        $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function arquivados(){
+        $query = '
+                select 
+                    t.id, s.status, t.id_status, t.tarefa, t.cor_fundo, t.cor_tarefa 
+                from 
+                    tb_tarefas  as t 
+                    left join tb_status as s on (t.id_status = s.id)
+                where 
+                	t.id_status = 2  
+        ';
+        $stmt = $this->conexao->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }
 

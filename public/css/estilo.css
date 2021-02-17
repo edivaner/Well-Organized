@@ -128,16 +128,22 @@ input{
     padding: 20px 30px;
 }
 
+.divImgStatic{
+    /* display:inline-block; */
+    float: right;
+}
+
 /***Cartão Concluido****/
 .cartaoConcluido{
     display: inline-block;
     vertical-align: top;
-    background-color: #d1fecb;
-    width: 200px;
-    height: 200px;
+    /* background-color: #d1fecb; */
+    max-width: 200px;
+    max-height: 200px;
     border: 0px solid black;
     box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.25);
     margin: 20px 10px;
+    overflow: hidden;
 }
 
 .cabCartaoConcluido{
@@ -163,9 +169,10 @@ input{
     /* border: 1px solid blue; */
 }
 
-.rodapeCartaoConcluido{
+.rodapeCartao{
     float: right;
-    /* border: 1px solid violet; */
+    width: 100%;
+    border: 1px solid violet;
 }
 
 /*Cartão não concluido*/
@@ -173,7 +180,7 @@ input{
 .cartaoNaoConcluido{
     display: inline-block;
     vertical-align: top;
-    background-color: #d1fecb;
+    /* background-color: #d1fecb; */
     width: 200px;
     height: 200px;
     border: 0px solid black;

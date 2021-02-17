@@ -1,5 +1,6 @@
+
 <?php
-    $acao = 'recuperar';
+    $acao = 'afazer';
     require 'backend/tarefa_controle.php';
     // require 'public/php/tarefa_controle.php';
 
@@ -21,7 +22,6 @@
  
 </head>
 <body>
-    <!-- Seu código deverá estar aqui -->
     <nav class="navegacao">
         <div class="logo">
             <img src="public/assets/well-organized-logo.png" alt="Logo Organized">
@@ -34,37 +34,23 @@
         </div>
     </nav>
 
-    <section>
-        <button class="botaoAdicionar" id="botaoPlus" onclick="mostrarForm()">
-            <img src="public/assets/task-add-icon.png" alt="botão adicionar formulario">
-            <span>Adicionar Tarefa</span>
-        </button>
+    <form method="post" action="tarefa_controle.php?acao=inserir">
+        <div id="formulario">
+            <label for="descricao" class="descricaoTexto">Descrição:</label>
+            <input type="text" id="descricao" name="descricao" class="descricaoInput">
 
-        <? if(isset($_GET['inclusao']) && $_GET['inclusao']==1) { ?>
-            <!-- <div id="feedBackInclusao" class="bg-success pt-2 text-white d-flex justify-content-center">
-            <h5>Tarefa inserida com sucesso!</h5>
-        </div> -->
-        <?}?>
+            <label for="cor" class="labelcor">Cor:</label>
+            <input type="checkbox" class="checkzinho azul" value="#daf5fa" name="cor">
+            <input type="checkbox" class="checkzinho verde" value="#d1fecb" name="cor">
+            <input type="checkbox" class="checkzinho rosa" value="#f6d0f6" name="cor">
+            <input type="checkbox" class="checkzinho roxo" value="#dcd0f3" name="cor">
+            <input type="checkbox" class="checkzinho amarelo" value="#fcfccb" name="cor">
+            <input type="checkbox" class="checkzinho laranja" value="#fbd4b4" name="cor">
+            <input type="checkbox" class="checkzinho branco" value="#fff" name="cor">
 
-            <!-- public/php/tarefa_controle.php?acao=inserir -->
-        <form method="post" action="tarefa_controle.php?acao=inserir">
-            <div class="esconder" id="formulario">
-                <label for="descricao" class="descricaoTexto">Descrição:</label>
-                <input type="text" id="descricao" name="descricao" class="descricaoInput">
-
-                <label for="cor" class="labelcor">Cor:</label>
-                <input type="checkbox" class="checkzinho azul" value="#daf5fa" name="cor">
-                <input type="checkbox" class="checkzinho verde" value="#d1fecb" name="cor">
-                <input type="checkbox" class="checkzinho rosa" value="#f6d0f6" name="cor">
-                <input type="checkbox" class="checkzinho roxo" value="#dcd0f3" name="cor">
-                <input type="checkbox" class="checkzinho amarelo" value="#fcfccb" name="cor">
-                <input type="checkbox" class="checkzinho laranja" value="#fbd4b4" name="cor">
-                <input type="checkbox" class="checkzinho branco" value="#fff" name="cor">
-
-                <button class="buttonAdd">Adicionar</button>
-            </div>
-        </form>
-    </section>
+            <button class="buttonAdd">Adicionar</button>
+        </div>
+    </form>
 
     <article class="conteudo">
         <? foreach($tarefas as $indice => $tarefa){?>
@@ -122,23 +108,8 @@
                 </div>
             </div>
         <?}?>
-
-        <!-- <div class="cartaoNaoConcluido">
-            <div class="cabCartaoNaoConcluido">
-                <img src="public/assets/unchecked.png" alt="checked não concluido">
-                não concluido
-            </div>
-            <div class="textoDescricao">
-                Tarefas tarefas tarefas tarefas tarefas
-            </div>
-            <div class="rodapeCartaoNaoConcluido">
-                <img src="public/assets/archive-color.png" alt="arquivar">
-                <img src="public/assets/trash-gray-scale.png" alt="lixo">
-            </div>
-        </div> -->
     </article>
 
     <script src="public/js/script.js"></script>
 
 </body>
-</html>
