@@ -3,6 +3,148 @@
     box-sizing: content-box;
 }
 
+@media(max-width: 750px){
+    .links{
+        height: 80px;
+        margin-left: 10px;
+        /* border: 1px solid red; */
+    }
+
+    .conteudo{
+        max-width: 850px;
+        min-height: 500px;
+        padding: 20px 30px;
+    }
+
+    .labelcor{
+        display: block;
+        margin: 10px 30px;
+    }
+
+    .descricaoInput{
+        font-weight: bold;
+        width: 100px;
+        margin-left: 30px;
+    }
+
+    .descricaoTexto{
+        display: block;
+        width: 100px;
+        margin: 10px 30px;
+    }
+
+    .checkzinho{
+        display: inline-block;
+    }
+
+    .checkboxing{
+        display: block;
+        margin: 5px 30px;
+    }
+
+    .buttonAdd{
+        font-family: "Roboto Medium";
+        border-radius: 10px;
+        background-color: #50b6cf;
+        color: white;
+        padding: 2px 30px;
+        width: 300px;
+        height: 40px;
+        margin-left: 20px;
+
+        display: block;
+        margin: 5px 30px;
+    }
+}
+
+
+@media(min-width: 601px){
+    .logoResponsivel{
+        height: 100%;
+        max-height: 50%;
+        margin-left: 40px;
+        display: none;
+    }
+    
+    .menuResponsivel{
+        margin: 30px;
+        display: none;
+    }
+}
+
+@media(max-width: 600px){
+    /*Nav boostrap funciona com 574px*/
+    .logoResponsivel{
+        height: 100%;
+        max-height: 50%;
+        margin-left: 40px;
+        display: block;
+    }
+    
+    .menuResponsivel{
+        margin: 30px;
+        display: block;
+    }
+
+    .navegacao{
+        display:none;
+    }
+
+    .logo, .links{
+        display: none;
+    }
+
+    .formularioResponsivel{
+        padding: 20px;
+    }
+
+    .conteudo{
+        max-width: 600px;
+        min-height: 500px;
+        padding: 20px 30px;
+    }
+
+    .labelcor{
+        display: block;
+        margin: 10px 30px;
+    }
+
+    .descricaoInput{
+        font-weight: bold;
+        width: 100px;
+        margin-left: 30px;
+    }
+
+    .descricaoTexto{
+        display: block;
+        width: 100px;
+        margin: 10px 30px;
+    }
+
+    .checkzinho{
+        display: inline-block;
+    }
+
+    .checkboxing{
+        display: block;
+        margin: 5px 30px;
+    }
+
+    .buttonAdd{
+        font-family: "Roboto Medium";
+        border-radius: 10px;
+        background-color: #50b6cf;
+        color: white;
+        padding: 2px 30px;
+        width: 300px;
+        height: 40px;
+        margin-left: 20px;
+
+        display: block;
+        margin: 5px 30px;
+    }
+}
+
 /********************
                 INDEX
 **********************/
@@ -12,14 +154,13 @@
     height: 100px;
     margin: 20px 40px;
     display: flex;
-    flex-direction: row;
-
-    
+    flex-direction: row;    
 }
 
 .logo{
     height: 100%;
     max-height: 50%;
+    /* border: 1px solid red; */
 }
 
 .links{
@@ -99,6 +240,10 @@ input{
     border: none;
 }
 
+.checkboxing{
+    display: inline-block;
+}
+
 .checkzinho{
     height: 20px;
     width: 20px;
@@ -109,17 +254,17 @@ input{
 }
 
 /*Cores do check*/
-.azul{background-color: #daf5fa;}
-.verde{background-color: #d1fecb;}
-.rosa{background-color: #f6d0f6;}
-.roxo{background-color: #dcd0f3;}
-.amarelo{background-color: #fcfccb;}
-.laranja{background-color: #fbd4b4;}
-.branco{background-color: #fff;}
+.azul{background-color: #daf5fa; color: #19b5dc;}
+.verde{background-color: #d1fecb; color: #58a51d;}
+.rosa{background-color: #f6d0f6; color: #cb65cb;}
+.roxo{background-color: #dcd0f3; color: #9763f9;}
+.amarelo{background-color: #fcfccb; color: #8f8f69;}
+.laranja{background-color: #fbd4b4; color: #ec842e;}
+.branco{background-color: #fff; color: #727272;}
 
 
 /*
-    Conteudo index
+    Conteudo
 */
 
 .conteudo{
@@ -137,9 +282,8 @@ input{
 .cartaoConcluido{
     display: inline-block;
     vertical-align: top;
-    /* background-color: #d1fecb; */
-    max-width: 200px;
-    max-height: 200px;
+    width: 200px;
+    height: 200px;
     border: 0px solid black;
     box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.25);
     margin: 20px 10px;
@@ -165,27 +309,13 @@ input{
     font-size: 20px;
     padding: 10px;
     height: 145px;
-    overflow-y: hidden;
-    /* border: 1px solid blue; */
+    width: 200px;
+    overflow: hidden;
 }
 
 .rodapeCartao{
-    float: right;
-    width: 100%;
-    border: 1px solid violet;
-}
-
-/*Cartão não concluido*/
-
-.cartaoNaoConcluido{
     display: inline-block;
-    vertical-align: top;
-    /* background-color: #d1fecb; */
-    width: 200px;
-    height: 200px;
-    border: 0px solid black;
-    box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.25);
-    margin: 20px 10px;
+    margin: 3px;
 }
 
 .cabCartaoNaoConcluido{
@@ -200,9 +330,3 @@ input{
 .cabCartaoNaoConcluido img{
     margin: 5px;
 }
-
-.rodapeCartaoNaoConcluido{
-    float: right;
-    /* border: 1px solid violet; */
-}
-
