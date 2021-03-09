@@ -2,12 +2,13 @@
 *{
     box-sizing: content-box;
 }
-
-@media(max-width: 750px){
+body{
+    margin: auto;
+}
+@media(max-width: 890px){
     .links{
         height: 80px;
-        margin-left: 10px;
-        /* border: 1px solid red; */
+        margin-left: 5px;
     }
 
     .conteudo{
@@ -149,6 +150,9 @@
                 INDEX
 **********************/
 /*Menu index*/
+/* body{
+    background-color: blue;
+} */
 .navegacao{
     background-color: white;
     height: 100px;
@@ -165,7 +169,7 @@
 
 .links{
     height: 80px;
-    margin: 20px 160px;
+    margin: 20px 140px;
 }
 
 .links a,
@@ -262,15 +266,17 @@ input{
 .laranja{background-color: #fbd4b4; color: #ec842e;}
 .branco{background-color: #fff; color: #727272;}
 
-
 /*
     Conteudo
 */
 
 .conteudo{
-    width: 1000px;
+    width: 1200px;
     min-height: 500px;
     padding: 20px 30px;
+    margin: auto;
+    /*border: 5px solid red;
+    background-color: black;*/
 }
 
 .divImgStatic{
@@ -283,7 +289,7 @@ input{
     display: inline-block;
     vertical-align: top;
     width: 200px;
-    height: 200px;
+    height: 220px;
     border: 0px solid black;
     box-shadow: 2px 4px 5px rgb(0, 0, 0, 0.25);
     margin: 20px 10px;
@@ -330,3 +336,51 @@ input{
 .cabCartaoNaoConcluido img{
     margin: 5px;
 }
+
+
+
+/*
+
+<? foreach($tarefas as $indice => $tarefa){?>
+
+            <!-- Cor do cartão inteiro -->
+            <?if($tarefa->cor == '#daf5fa'){?>
+                <div class="cartaoConcluido azul">
+            <?}else if($tarefa->cor == '#d1fecb'){?>
+                <div class="cartaoConcluido verde">
+            <?}else if($tarefa->cor == '#f6d0f6'){?>
+                <div class="cartaoConcluido rosa">
+            <?}else if($tarefa->cor == '#dcd0f3'){?>
+                <div class="cartaoConcluido roxo">
+            <?}else if($tarefa->cor == '#fcfccb'){?>
+                <div class="cartaoConcluido amarelo">
+            <?}else if($tarefa->cor == '#fbd4b4'){?>
+                <div class="cartaoConcluido laranja">
+            <?}else if($tarefa->cor == '#fff'){?>
+                <div class="cartaoConcluido branco">
+            <?}?>
+                    <!-- Cor do cabeçalho -->
+                    <? if($tarefa->concluida == 0){?>
+                        <div class="cabCartaoNaoConcluido">
+                    <?}else if($tarefa->concluida == 1){?>
+                        <div class="cabCartaoConcluido">
+                    <?}?>
+                    <? if($tarefa->concluida == 0){?>
+                        <img src="public/assets/unchecked.png" alt="checked não concluido">
+                    <?}else if($tarefa->concluida == 1){?>
+                        <img src="public/assets/checked.png" alt="checked concluido">
+                    <?}?>
+                        <?= $tarefa->concluida?>
+                    </div>
+
+                        <div class="textoDescricao">
+                            <?= $tarefa->descricao?>
+                        </div>
+                        <div class="rodapeCartao">
+                            <img src="public/assets/archive-color.png" alt="arquivar" onclick="arquivar()">
+                            <img src="public/assets/trash-gray-scale.png" alt="lixo" onclick="excluir()">
+                        </div>
+                </div>
+        <?}?>
+
+*/

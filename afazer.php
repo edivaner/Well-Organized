@@ -15,15 +15,15 @@
     <title>Well Organized</title>
     <meta charset="UTF-8">        
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="public/css/estilo.css" media="screen" />
     <link rel="icon" href="./public/assets/favicon.ico"> 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> 
-
+    <link rel="stylesheet" type="text/css" href="public/css/estilo.css" media="screen" />
  
 </head>
 <body>
     <div class="logoResponsivel">
         <img src="public/assets/well-organized-logo.png" alt="Logo Organized">
+        <a href="index.php"></a>
     </div>
 
     <!-- Nav boostrap funciona a partir de 575px -->
@@ -55,6 +55,7 @@
         <div class="navegacao">
             <div class="logo">
                 <img src="public/assets/well-organized-logo.png" alt="Logo Organized">
+                
             </div>
 
             <div class="links">
@@ -88,53 +89,73 @@
     </form>
 
     <article class="conteudo">
-        <? foreach($tarefas as $indice => $tarefa){?>
+    <? foreach($tarefas as $indice => $tarefa){?>    
 
-            <!-- Cor do cartão inteiro -->
-            <?if($tarefa->cor_fundo == '#daf5fa'){?>
-                <div class="cartaoConcluido azul">
-            <?}else if($tarefa->cor_fundo == '#d1fecb'){?>
-                <div class="cartaoConcluido verde">
-            <?}else if($tarefa->cor_fundo == '#f6d0f6'){?>
-                <div class="cartaoConcluido rosa">
-            <?}else if($tarefa->cor_fundo == '#dcd0f3'){?>
-                <div class="cartaoConcluido roxo">
-            <?}else if($tarefa->cor_fundo == '#fcfccb'){?>
-                <div class="cartaoConcluido amarelo">
-            <?}else if($tarefa->cor_fundo == '#fbd4b4'){?>
-                <div class="cartaoConcluido laranja">
-            <?}else if($tarefa->cor_fundo == '#fff'){?>
-                <div class="cartaoConcluido branco">
+        <!-- Aqui abre o cartão --> <!-- Cor do cartão inteiro -->
+        <?if($tarefa->cor == '#daf5fa'){?>
+            <div class="cartaoConcluido azul">
+        <?}else if($tarefa->cor == '#d1fecb'){?>
+            <div class="cartaoConcluido verde">
+        <?}else if($tarefa->cor == '#f6d0f6'){?>
+            <div class="cartaoConcluido rosa">
+        <?}else if($tarefa->cor == '#dcd0f3'){?>
+            <div class="cartaoConcluido roxo">
+        <?}else if($tarefa->cor == '#fcfccb'){?>
+            <div class="cartaoConcluido amarelo">
+        <?}else if($tarefa->cor == '#fbd4b4'){?>
+            <div class="cartaoConcluido laranja">
+        <?}else if($tarefa->cor == '#fff'){?>
+            <div class="cartaoConcluido branco">
+        <?}?>
+        <!-- Cor do cabeçalho -->
+        <? if($tarefa->concluida == 0){?>
+                <div class="cabCartaoNaoConcluido">
+            <?}else if($tarefa->concluida == 1){?>
+                <div class="cabCartaoConcluido">
             <?}?>
-                    <!-- Cor do cabeçalho -->
-                    <? if($tarefa->id_status == 1){?>
-                        <div class="cabCartaoNaoConcluido">
-                    <?}else if($tarefa->id_status == 2){?>
-                        <div class="cabCartaoConcluido">
-                    <?}?>
-                    <? if($tarefa->id_status == 1){?>
-                        <img src="public/assets/unchecked.png" alt="checked não concluido">
-                    <?}else if($tarefa->id_status == 2){?>
-                        <img src="public/assets/checked.png" alt="checked concluido">
-                    <?}?>
-                        <?= $tarefa->status?>
-                    </div>
-
+            <!-- IMG do cabecalho-->
+            <? if($tarefa->concluida == 0){?>
+                <img src="public/assets/unchecked.png" alt="checked não concluido">
+            <?}else if($tarefa->concluida == 1){?>
+                <img src="public/assets/checked.png" alt="checked concluido">
+            <?}?>
+                <!-- Escrita cabecalho -->
+                <? if($tarefa->concluida==0){?>
+                    Não Concluido
+                <?}else if($tarefa->concluida == 1){?>
+                    Concluido
+                <?}?>
+            </div>
+                <!-- Escrita do cartao -->
+                    <? if($tarefa->arquivada==0){?>
                         <div class="textoDescricao">
-                            <?= $tarefa->tarefa?>
+                            <?= $tarefa->descricao?>
                         </div>
-                        <div class="rodapeCartao">
-                            <img src="public/assets/archive-color.png" alt="arquivar" onclick="arquivar()">
-                            <img src="public/assets/trash-gray-scale.png" alt="lixo" onclick="excluir()">
+                    <?}else if($tarefa->arquivada == 1){?>
+                        <div class="textoDescricao">
+                            <del> <?= $tarefa->descricao?> </del>
                         </div>
+                    <?}?>
+                <!-- rodapé-->
+                <div class="rodapeCartao">
+                <? if($tarefa->concluida == 0){?>
+                    <img src="public/assets/archive-color.png" alt="arquivar" onclick="concluir(<?=$tarefa->idTarefa?>)">
+                <?}else if($tarefa->concluida == 1){?>
+                    <img src="public/assets/archive-color.png" alt="arquivar" onclick="arquivar(<?=$tarefa->idTarefa?>)">
+                <?}?>
+                    <img src="public/assets/trash-gray-scale.png" alt="lixo" onclick="excluir(<?=$tarefa->idTarefa?>)">
                 </div>
+            </div> 
+            <!-- Fechando o cartão -->
         <?}?>
     </article>
 
-    <script src="public/js/script.js"></script>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="public/js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
+    
 </body>

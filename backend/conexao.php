@@ -2,9 +2,9 @@
 
 class Conexao{
     private $host = 'localhost';
-    private $dbname = 'well_organized';
-    private $user = 'root';
-    private $pass = '';   
+    private $dbname = 'taskmanager';
+    private $user = 'taskmanageruser';
+    private $pass = '#taskmgr2020-2';   
     
     public function conectar(){
         try{

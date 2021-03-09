@@ -2,10 +2,17 @@
 
 class Tarefa{
     private $id;
-    private $id_status;
-    private $tarefa;
-    private $cor_fundo;
-    private $cor_tarefa;
+    private $descricao;
+    private $cor;
+    private $concluida;
+    private $arquivada;
+
+    // public function __construct($pDescricao, $pCor){
+    //     $this->descricao = $pDescricao;
+    //     $this->cor = $pCor;
+    //     $this->concluida = 0;
+    //     $this->arquivada = 0;
+    // }
 
     public function __get($atributo){
         return $this->$atributo;

@@ -9,27 +9,11 @@
 
     if($acao == 'inserir'){ 
         $tarefa = new Tarefa();
-        $tarefa->__set('tarefa', $_POST['descricao']);
-        $tarefa->__set('cor_fundo', $_POST['cor']);
+        $tarefa->__set('descricao', $_POST['descricao']);
+        $tarefa->__set('cor', $_POST['cor']);
 
-        $corFundo = "";
-        if($_POST['cor'] == '#daf5fa'){
-            $corFundo = '#19b5dc'; //Para o fundo azul
-        } else if($_POST['cor'] == '#d1fecb'){
-            $corFundo = '#58a51d'; //Para o fundo verde
-        } else if($_POST['cor'] == '#f6d0f6'){
-            $corFundo = '#cb65cb'; //Para o fundo rosa
-        } else if($_POST['cor'] == '#dcd0f3'){
-            $corFundo = '#9763f9'; //Para o fundo roxo
-        } else if($_POST['cor'] == '#fcfccb'){
-            $corFundo = '#8f8f69'; //Para o fundo amarelo
-        } else if($_POST['cor'] == '#fbd4b4'){
-            $corFundo = '#ec842e'; //Para o fundo laranja
-        } else if($_POST['cor'] == '#ffffff'){
-            $corFundo = '#727272'; //Para o fundo branco
-        } 
-
-        $tarefa->__set('cor_tarefa', $corFundo);
+        $tarefa->__set('concluida', 0);
+        $tarefa->__set('arquivada', 0);
 
         $conexao = new Conexao();
         $tarefaService = new TarefaService($conexao, $tarefa);
@@ -44,26 +28,59 @@
         $tarefas = $tarefaService->recuperar();
         // echo'bem';
 
-    } else if($acao == 'arquivar'){
-        echo 'bboy';
-    } else if($acao == "excluir"){
-
     } else if($acao == 'afazer'){
         $tarefa = new Tarefa();
         $conexao = new Conexao();
 
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefas = $tarefaService->afazer();
+
     } else if($acao == 'arquivados'){
         $tarefa = new Tarefa();
         $conexao = new Conexao();
 
         $tarefaService = new TarefaService($conexao, $tarefa);
         $tarefas = $tarefaService->arquivados();
+    } else if($acao == 'arquivar'){
+        // echo '<pre>';
+        //     print_r($_GET);
+        // echo '</pre>';
+
+        $tarefa = new Tarefa();
+        $tarefa->__set('id', $_GET['id']);
+
+        $conexao = new Conexao();
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        if($tarefaService->arquivar()){
+            header('location: arquivados.php');
+        }
+
+
+    } else if($acao == "excluir"){
+        $tarefa = new Tarefa();
+        $tarefa->__set('id', $_GET['id']);
+
+        $conexao = new Conexao();
+
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService->remover();
+        header('location: index.php');
+
+    } else if($acao == "concluir"){
+        // echo '<pre>';
+        //     print_r($_GET);
+        // echo '</pre>';
+
+        $tarefa = new Tarefa();
+        $tarefa->__set('id', $_GET['id']);
+
+        $conexao = new Conexao();
+
+        $tarefaService = new TarefaService($conexao, $tarefa);
+        $tarefaService->concluir();
+        header('location: index.php');
     }
 
-    // echo '<pre>';
-    //     print_r($tarefa);
-    // echo '</pre>';
+    
 
 ?>
