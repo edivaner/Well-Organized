@@ -1,8 +1,7 @@
 
 <?php
     $acao = 'afazer';
-    require 'backend/tarefa_controle.php';
-    // require 'public/php/tarefa_controle.php';
+    require 'controller/tarefa_controle.php';
 
     // echo '<pre>';
     //     print_r($tarefas);

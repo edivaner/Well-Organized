@@ -1,11 +1,7 @@
 <?php
     $acao = 'recuperar';
-    require 'backend/tarefa_controle.php';
-    // require 'public/php/tarefa_controle.php';
-
-    // echo '<pre>';
-    //     print_r($tarefas);
-    // echo '</pre>';
+    require 'controller/tarefa_controle.php';
+    
 ?>
 
 <!DOCTYPE html>

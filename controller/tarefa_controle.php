@@ -1,8 +1,8 @@
 <?php
     // echo 'aqui1';
-    require "backend/conexao.php";
-    require "backend/tarefa.model.php";
-    require "backend/tarefa.service.php";
+    require "dao/conexao.php";
+    require "model/tarefa.model.php";
+    require "dao/tarefa.service.php";
     // echo 'aqui2';
 
     $acao = isset($_GET['acao']) ? $_GET['acao'] : $acao;
