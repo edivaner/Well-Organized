@@ -1,6 +1,6 @@
 <?php
-    $acao = 'arquivados';
-    require 'controller/tarefa_controle.php';
+    /*$acao = 'arquivados';
+    require 'controller/tarefa_controle.php';*/
 
     // echo '<pre>';
     //     print_r($tarefas);
@@ -64,7 +64,7 @@
     </nav>
 
 
-    <form method="post" action="tarefa_controle.php?acao=inserir">
+    <form id="form-tarefa" method="post">
         <div class="formularioResponsivel" id="formulario">
             <label for="descricao" class="descricaoTexto">Descrição:</label>
             <input type="text" id="descricao" name="descricao" class="descricaoInput">
@@ -81,73 +81,24 @@
             </div>
             
 
-            <button class="buttonAdd">Adicionar</button>
+            <button type="submit" class="buttonAdd">Adicionar</button>
+            <input hidden type="text" name="_acao" value="cadastrar">
         </div>
     </form>
 
 
     <article class="conteudo">
-    <? foreach($tarefas as $indice => $tarefa){?>    
-
-        <!-- Aqui abre o cartão --> <!-- Cor do cartão inteiro -->
-        <?if($tarefa->cor == '#daf5fa'){?>
-            <div class="cartaoConcluido azul">
-        <?}else if($tarefa->cor == '#d1fecb'){?>
-            <div class="cartaoConcluido verde">
-        <?}else if($tarefa->cor == '#f6d0f6'){?>
-            <div class="cartaoConcluido rosa">
-        <?}else if($tarefa->cor == '#dcd0f3'){?>
-            <div class="cartaoConcluido roxo">
-        <?}else if($tarefa->cor == '#fcfccb'){?>
-            <div class="cartaoConcluido amarelo">
-        <?}else if($tarefa->cor == '#fbd4b4'){?>
-            <div class="cartaoConcluido laranja">
-        <?}else if($tarefa->cor == '#fff'){?>
-            <div class="cartaoConcluido branco">
-        <?}?>
-        <!-- Cor do cabeçalho -->
-        <? if($tarefa->concluida == 0){?>
-                <div class="cabCartaoNaoConcluido">
-            <?}else if($tarefa->concluida == 1){?>
-                <div class="cabCartaoConcluido">
-            <?}?>
-            <!-- IMG do cabecalho-->
-            <? if($tarefa->concluida == 0){?>
-                <img src="public/assets/unchecked.png" alt="checked não concluido">
-            <?}else if($tarefa->concluida == 1){?>
-                <img src="public/assets/checked.png" alt="checked concluido">
-            <?}?>
-                <!-- Escrita cabecalho -->
-                <? if($tarefa->concluida==0){?>
-                    Não Concluido
-                <?}else if($tarefa->concluida == 1){?>
-                    Concluido
-                <?}?>
-            </div>
-                <!-- Escrita do cartao -->
-                    <? if($tarefa->arquivada==0){?>
-                        <div class="textoDescricao">
-                            <?= $tarefa->descricao?>
-                        </div>
-                    <?}else if($tarefa->arquivada == 1){?>
-                        <div class="textoDescricao">
-                            <del> <?= $tarefa->descricao?> </del>
-                        </div>
-                    <?}?>
-                <!-- rodapé-->
-                <div class="rodapeCartao">
-                    <img src="public/assets/archive-color.png" alt="arquivar" onclick="arquivar(<?=$tarefa->idTarefa?>)">
-                    <img src="public/assets/trash-gray-scale.png" alt="lixo" onclick="excluir(<?=$tarefa->idTarefa?>)">
-                </div>
-            </div> 
-            <!-- Fechando o cartão -->
-        <?}?>
+       
     </article>
 
-    <script src="public/js/script.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="public/js/script.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="public/js/cadastro-tarefas.js"></script>
+    <script src="public/js/listagem-arquivados.js"></script>
+    
 </body>

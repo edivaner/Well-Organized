@@ -340,10 +340,9 @@ input{
 
 
 /*
+        <? foreach($tarefas as $indice => $tarefa){?>    
 
-<? foreach($tarefas as $indice => $tarefa){?>
-
-            <!-- Cor do cartão inteiro -->
+            <!-- Aqui abre o cartão --> <!-- Cor do cartão inteiro -->
             <?if($tarefa->cor == '#daf5fa'){?>
                 <div class="cartaoConcluido azul">
             <?}else if($tarefa->cor == '#d1fecb'){?>
@@ -359,28 +358,45 @@ input{
             <?}else if($tarefa->cor == '#fff'){?>
                 <div class="cartaoConcluido branco">
             <?}?>
-                    <!-- Cor do cabeçalho -->
-                    <? if($tarefa->concluida == 0){?>
-                        <div class="cabCartaoNaoConcluido">
+            <!-- Cor do cabeçalho -->
+            <? if($tarefa->concluida == 0){?>
+                    <div class="cabCartaoNaoConcluido">
+                <?}else if($tarefa->concluida == 1){?>
+                    <div class="cabCartaoConcluido">
+                <?}?>
+                <!-- IMG do cabecalho-->
+                <? if($tarefa->concluida == 0){?>
+                    <img src="public/assets/unchecked.png" alt="checked não concluido">
+                <?}else if($tarefa->concluida == 1){?>
+                    <img src="public/assets/checked.png" alt="checked concluido">
+                <?}?>
+                    <!-- Escrita cabecalho -->
+                    <? if($tarefa->concluida==0){?>
+                        Não Concluido
                     <?}else if($tarefa->concluida == 1){?>
-                        <div class="cabCartaoConcluido">
+                        Concluido
                     <?}?>
-                    <? if($tarefa->concluida == 0){?>
-                        <img src="public/assets/unchecked.png" alt="checked não concluido">
-                    <?}else if($tarefa->concluida == 1){?>
-                        <img src="public/assets/checked.png" alt="checked concluido">
-                    <?}?>
-                        <?= $tarefa->concluida?>
-                    </div>
-
+                </div>
+                    <!-- Escrita do cartao -->
+                    <? if($tarefa->arquivada==0){?>
                         <div class="textoDescricao">
                             <?= $tarefa->descricao?>
                         </div>
-                        <div class="rodapeCartao">
-                            <img src="public/assets/archive-color.png" alt="arquivar" onclick="arquivar()">
-                            <img src="public/assets/trash-gray-scale.png" alt="lixo" onclick="excluir()">
+                    <?}else if($tarefa->arquivada == 1){?>
+                        <div class="textoDescricao">
+                            <del> <?= $tarefa->descricao?> </del>
                         </div>
-                </div>
+                    <?}?>
+                    <!-- rodapé-->
+                    <div class="rodapeCartao">
+                    <? if($tarefa->concluida == 0){?>
+                        <img src="public/assets/archive-color.png" alt="arquivar" onclick="concluir(<?=$tarefa->idTarefa?>)">
+                    <?}else if($tarefa->concluida == 1){?>
+                        <img src="public/assets/archive-color.png" alt="arquivar" onclick="arquivar(<?=$tarefa->idTarefa?>)">
+                    <?}?>
+                        <img src="public/assets/trash-gray-scale.png" alt="lixo" onclick="excluir(<?=$tarefa->idTarefa?>)">
+                    </div>
+            </div> 
+            <!-- Fechando o cartão -->
         <?}?>
-
 */
