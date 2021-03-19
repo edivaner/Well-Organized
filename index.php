@@ -48,7 +48,6 @@
         </div>
     </div>
 
-
     <nav>
         <div class="navegacao">
             <div class="logo">
