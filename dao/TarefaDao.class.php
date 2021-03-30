@@ -85,14 +85,15 @@
                 gettype($newValue) === 'string' ? $query .= $field." = '".$newValue."'" : $query .= $field." = ".$newValue;
 
                 // Se não for o último campo, então coloca vírgula
-                if ($field !== array_key_last($fields)) $query .= ", ";
+                //if ($field !== array_key_last($fields)) $query .= ", "; // Versão não compativél com php de minha pc.
+                if ($field !== end(array_keys($fields))) $query .= ", ";
             }            
 
-            $query .= " WHERE idTarefa = :idTarefa";
+            $query .= " WHERE idTarefa=:idTarefa";
 
             // fields to bind
             $fields = array (':idTarefa' => $idTarefa);
-
+            
             try {
                 $this->conexao->connect();    
                 $stmt = $this->conexao->prepareQuery($query, $fields);                
@@ -131,10 +132,8 @@
         }
 
         public function buscarArquivadas() { 
-            $query = "SELECT * FROM tarefa WHERE arquivada = 1  AND concluida = 1";    //ORDER BY descricao ASC                   
-            // fields to bind
+            $query = "SELECT * FROM tarefa WHERE arquivada = 1  AND concluida = 1"; 
             $fields = [];
-            // array return
             $arr = [];
             try {
                 $this->conexao->connect();    
@@ -147,10 +146,8 @@
         }
 
         public function buscarAFazer() { 
-            $query = "SELECT * FROM tarefa WHERE concluida = 0 and arquivada = 0";    //ORDER BY descricao ASC                   
-            // fields to bind
+            $query = "SELECT * FROM tarefa WHERE concluida = 0 and arquivada = 0"; 
             $fields = [];
-            // array return
             $arr = [];
             try {
                 $this->conexao->connect();    

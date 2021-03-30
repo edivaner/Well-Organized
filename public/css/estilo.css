@@ -310,6 +310,16 @@ input{
 }
 
     /*Serve tanto para concluido quanto para não concluido*/
+.textoDescricaoRiscado{
+    font-family: "Open Sans SemiBold";
+    text-decoration: line-through;
+    font-size: 20px;
+    padding: 10px;
+    height: 145px;
+    width: 200px;
+    overflow: hidden;
+}
+
 .textoDescricao{
     font-family: "Open Sans SemiBold";
     font-size: 20px;

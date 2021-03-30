@@ -25,7 +25,7 @@
                     if (isset($_POST['_acao'])) {
                         $this->handlePostRequest($_POST['_acao']);                        
                     } else {
-                        echo json_encode(array('message' => 'Ocorreu um erro ao tentar realizar a operação.<br> Ação não informada', 'status_code' => 0));     
+                        echo json_encode(array('message' => 'POST: Ocorreu um erro ao tentar realizar a operação.<br> Ação não informada', 'status_code' => 0));     
                     }                     
                 break;
 
@@ -33,12 +33,12 @@
                     if (isset($_GET['_acao'])) {
                         $this->handleGetRequest($_GET['_acao']);                        
                     } else {
-                        echo json_encode(array('message' => 'Ocorreu um erro ao tentar realizar a operação.<br> Ação não informada', 'status_code' => 0));     
+                        echo json_encode(array('message' => 'GET: Ocorreu um erro ao tentar realizar a operação.<br> Ação não informada', 'status_code' => 0));     
                     }                      
                 break;
 
                 default:
-                    echo json_encode(array('message' => 'Ocorreu um erro ao tentar realizar a operação.<br> Requisição desconhecida', 'status_code' => 0)); 
+                    echo json_encode(array('message' => 'Default: Ocorreu um erro ao tentar realizar a operação.<br> Requisição desconhecida', 'status_code' => 0)); 
             }
         }
 
@@ -47,9 +47,10 @@
                 case 'cadastrar':
                     $this->cadastrar();
                 break;
+                
                 // poderiam existir outras ações a serem executadas com POST
                 default:
-                    echo json_encode(array('message' => 'Ocorreu um erro ao tentar realizar a operação.<br> Ação desconhecida', 'status_code' => 0)); 
+                    echo json_encode(array('message' => ' PostRequest: Ocorreu um erro ao tentar realizar a operação.<br> Ação desconhecida', 'status_code' => 0)); 
             }            
         }
 
@@ -64,9 +65,18 @@
                 case 'afazer':
                     $this->buscarAFazer();
                 break;
+                case 'lixo':
+                    $this->deletar($_GET['_id']);
+                break;
+                case 'concluir':
+                    $this->atualizarConcluindo($_GET['_id']);
+                break;
+                case 'arquivar':
+                    $this->atualizarArquivando($_GET['_id']);
+                break;
                 // poderiam existir outras ações a serem executadas com GET
                 default:
-                    echo json_encode(array('message' => 'Ocorreu um erro ao tentar realizar a operação.<br> Ação desconhecida', 'status_code' => 0)); 
+                    echo json_encode(array('message' => 'GetRequest: Ocorreu um erro ao tentar realizar a operação.<br> Ação desconhecida', 'status_code' => 0)); 
             }
         }
 
@@ -78,6 +88,7 @@
                 $tarefa = new Tarefa(0, $descricao, $cor);
 
                 if($this->daoTarefa->cadastrarTarefa($tarefa)) {
+                    
                     echo json_encode(array('message' => 'Cadastro realizado com sucesso!', 'status_code' => 1));
                 } else {
                     echo json_encode(array('message' => 'Ocorreu um erro ao tentar realizar o cadastro.', 'status_code' => 0));
@@ -119,17 +130,40 @@
             }
         }
 
-        public function atualizar() {
+        public function atualizarConcluindo($_id) {
             try {
-                echo json_encode(array('message' => 'Produto atualizado com sucesso', 'status_code' => 1));
+                echo $_id;
+                $fields = ['concluida' => true];
+                $retorno = $this->daoTarefa->atualizarTarefa($_id, $fields);
+                if($retorno){
+                    header('Location: ../index.php');
+                }
+                echo $retorno;
+                //echo json_encode(array('message' => 'Tarefa concluida com sucesso', 'status_code' => 1));
             } catch (Exception $ex) {
-                echo json_encode(array('message' => 'Uma exceção ocorreu ao tentar atualizar a tarefa.<br>Mensagem: '.$ex->getMessage(), 'status_code' => 0));
+                echo json_encode(array('message' => 'Uma exceção ocorreu ao tentar concluir a tarefa.<br>Mensagem: '.$ex->getMessage(), 'status_code' => 0));
             }
-        }    
+        }
         
-        public function deletar() {
+        public function atualizarArquivando($_id) {
             try {
-                echo json_encode(array('message' => 'Produto excluído com sucesso', 'status_code' => 1));
+                echo $_id;
+                $fields = ['concluida' => true, 'arquivada' => true];
+                $retorno = $this->daoTarefa->atualizarTarefa($_id, $fields);
+                if($retorno){
+                    header('Location: ../arquivados.php');
+                }
+                // echo json_encode(array('message' => 'Tarefa arquivada com sucesso', 'status_code' => 1));
+            } catch (Exception $ex){
+                echo json_encode(array('message' => 'Uma exceção ocorreu ao tentar arquivar a tarefa.<br>Mensagem: '.$ex->getMessage(), 'status_code' => 0));
+            }
+        }
+        
+        public function deletar($_id) {
+            try {
+                $this->daoTarefa->deletarTarefa($_id);
+                header('Location: ../index.php');
+                //echo json_encode(array('message' => 'Produto excluído com sucesso', 'status_code' => 1));
             } catch (Exception $ex) {
                 echo json_encode(array('message' => 'Uma exceção ocorreu ao tentar excluir a tarefa.<br>Mensagem: '.$ex->getMessage(), 'status_code' => 0));
             }

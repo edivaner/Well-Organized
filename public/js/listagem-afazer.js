@@ -49,6 +49,11 @@ function errorListRequest(xhr, status, error) {
  * Carrega as tarefas na tabela
 */
 function loadTarefas(tarefas) {
+    
+    if($('article').children().length > 0){
+        $('article').children().remove();
+    }
+
     for (let i = 0; i < tarefas.length; i++) {
         //Criação do cabeçalho da tarefa
         const cab = document.createElement('div'); // Cabeçalho do cartao
@@ -70,28 +75,38 @@ function loadTarefas(tarefas) {
 
 
         //Criação do corpo (descricao) da tarefa
-        
         let textDescricao = document.createElement('div');
-        textDescricao.classList.add('textoDescricao');
 
         if(tarefas[i].arquivada == 0){    
-            textDescricao.innerText = tarefas[i].descricao;
+            textDescricao.classList.add('textoDescricao');
         }else if(tarefas[i].arquivada == 1){
-            textDescricao.innerText = tarefas[i].descricao;
+            textDescricao.classList.add('textoDescricaoRiscado');
         }
+
+        textDescricao.innerText = tarefas[i].descricao;
         
         //criação do rodapé
         const rodape = document.createElement('footer');
 
         const rodapeAcao = document.createElement('img');
         rodapeAcao.src = "public/assets/archive-color.png";
-        //rodapeAcao.onclick="concluir(8)";
+
+        if(tarefas[i].concluida == 0){
+            rodapeAcao.addEventListener('click', function() {
+               concluir(tarefas[i].idTarefa);
+            });
+        }else if(tarefas[i].concluida == 1){
+            rodapeAcao.addEventListener('click', function() {
+                arquivar(tarefas[i].idTarefa);
+            });
+        }
+        
 
         const rodapeLixo = document.createElement('img');
         rodapeLixo.src = "public/assets/trash-gray-scale.png";
-        rodapeAcao.onclick='excluir(8)';
-        //rodapeLixo.classList.add('lixo');
-        //rodape.addEventListener('click', excluir());
+        rodapeLixo.addEventListener('click', function() {
+            excluir(tarefas[i].idTarefa, tarefas[i].descricao);
+        });
 
         rodape.appendChild(rodapeAcao);
         rodape.appendChild(rodapeLixo);
@@ -130,14 +145,32 @@ function loadTarefas(tarefas) {
      
 }
 
-function excluir(idProduto) {
-    alert('EExcluir produto com o id = ' + idProduto);
+function excluir(IDTarefa, desc) {
+    let confirma = confirm('Excluir a tarefa: ' +desc);
+
+    if(confirma){
+        location.href = "./controller/TarefaController.class.php?_acao=lixo&_id="+IDTarefa;
+    }else{
+        console.log('não excluir');
+    }             
 }
 
-function concluir(idProduto) {
-    alert('Editar produto com o id = ' + idProduto);
+function concluir(IDTarefa) {
+    let confirma = ('Acao de concluir tarefa com o id: '+IDTarefa);
+
+    if(confirma){
+        location.href = "./controller/TarefaController.class.php?_acao=concluir&_id="+IDTarefa;
+    }else{
+        console.log('Cancelar Atualização');
+    }
 }
 
-$(document).on('click', '.lixo', function(idTarefa){
-    alert('Excluir produto com o id = ' + idTarefa);
-});
+function arquivar(IDTarefa) {
+    let confirma = ('Acao de arquivar tarefa com o id: '+IDTarefa);
+
+    if(confirma){
+        location.href = "./controller/TarefaController.class.php?_acao=arquivar&_id="+IDTarefa;
+    }else{
+        console.log('Cancelar Atualização');
+    }
+}
