@@ -156,7 +156,7 @@ function excluir(IDTarefa, desc) {
 }
 
 function concluir(IDTarefa) {
-    let confirma = ('Acao de concluir tarefa com o id: '+IDTarefa);
+    let confirma = confirm('Acao de concluir tarefa com o id: '+IDTarefa);
 
     if(confirma){
         location.href = "./controller/TarefaController.class.php?_acao=concluir&_id="+IDTarefa;
@@ -166,7 +166,7 @@ function concluir(IDTarefa) {
 }
 
 function arquivar(IDTarefa) {
-    let confirma = ('Acao de arquivar tarefa com o id: '+IDTarefa);
+    let confirma = confirm('Acao de arquivar tarefa com o id: '+IDTarefa);
 
     if(confirma){
         location.href = "./controller/TarefaController.class.php?_acao=arquivar&_id="+IDTarefa;

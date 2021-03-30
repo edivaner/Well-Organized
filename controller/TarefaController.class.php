@@ -151,7 +151,7 @@
                 $fields = ['concluida' => true, 'arquivada' => true];
                 $retorno = $this->daoTarefa->atualizarTarefa($_id, $fields);
                 if($retorno){
-                    header('Location: ../arquivados.php');
+                    header('Location: ../index.php');
                 }
                 // echo json_encode(array('message' => 'Tarefa arquivada com sucesso', 'status_code' => 1));
             } catch (Exception $ex){
